@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30">
+    <Properties>
+        <Property name="basePath">target/log.log</Property>
+    </Properties>
+    <Appenders>
+        <RollingFile name="File" fileName="${basePath}" append="true"
+                     filePattern="${basePath}/target-%highlight{%d [%t] %-5level: %msg%n%throwable}{FATAL=red, ERROR=red, WARN=yellow bold, INFO=black, DEBUG=green bold, TRACE=blue}">
+            <PatternLayout pattern="%highlight{%d [%t] %-5level: %msg%n%throwable}{FATAL=red, ERROR=red, WARN=yellow bold, INFO=black, DEBUG=green bold, TRACE=blue}"/>
+            <SizeBasedTriggeringPolicy size="500" />
+        </RollingFile>
+
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{%d [%t] %-5level: %msg%n%throwable}{FATAL=red, ERROR=red, WARN=yellow bold, INFO=black, DEBUG=green bold, TRACE=blue}" disableAnsi="false"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="File"/>
+        </Root>
+    </Loggers>
+</Configuration>
